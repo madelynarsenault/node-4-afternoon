@@ -24,7 +24,7 @@ module.exports = {
         const index = user.cart.findIndex(swag => swag.id == id);
         const selectedSwag = swag.find(swag => swag.id == id);
 
-        if (index === -1){
+        if (index !== -1){
             user.cart.splice(index, 1);
             user.total -= selectedSwag.price;
         }

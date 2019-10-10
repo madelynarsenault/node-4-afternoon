@@ -5,6 +5,7 @@ const checkForSession = require("./middlewares/checkForSession");
 const swagController = require('./controllers/swagController');
 const authController = require('./controllers/authController');
 const cartController = require('./controllers/cartController');
+const searchController = require('./controllers/searchController');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(
 })
 );
 app.use(checkForSession)
+app.use(express.static(`${__dirname}/../build`));
 
 
 app.post('/api/login', authController.login);
@@ -29,6 +31,7 @@ app.get("/api/swag", swagController.read);
 app.post("/api/cart/:id", cartController.add);
 app.post("/api/cart/checkout", cartController.checkout);
 app.delete("/api/cart/:id", cartController.delete);
+app.get("/api/search", searchController.search);
 
 
 
